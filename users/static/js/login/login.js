@@ -14,8 +14,9 @@ $(document).ready(function(){
         Login: () => {
             let $self = Login.config;
             $data = $self.form_login.serializeArray();
-            $cleaned_data = $.each($data)
-            console.log($data)
+            $cleaned_data = $.each($data, function(key, value){return value.value})
+            console.log('data: ' + fetch('http://localhost:8000/sample/'))
+            console.log('link: ' + window.location.origin)
         }
     }
 
