@@ -24,6 +24,7 @@
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Tagala <span style="color:orange">|</span> Login</h3></div>
                                     <div class="card-body">
                                         <form id="form-login">
+                                            {% csrf_token %}
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" type="text" name="username" required="required"/>
                                                 <label for="inputUsername">Username</label>
@@ -63,5 +64,6 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{% static 'js/login/login.js' %}"></script>
+        <script src="{% static 'js/common/common.js' %}"></script>
     </body>
 </html>

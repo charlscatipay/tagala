@@ -11,12 +11,24 @@ $(document).ready(function(){
                 $this.btn_login.on('click', this.Login);
 
         },
-        Login: () => {
+        Login: async () => {
             let $self = Login.config;
             $data = $self.form_login.serializeArray();
-            $cleaned_data = $.each($data, function(key, value){return value.value})
-            console.log('data: ' + fetch('http://localhost:8000/sample/'))
-            console.log('link: ' + window.location.origin)
+            console.log($data[0].value)
+
+            $payload = {
+                url : '/sample/',
+                payload: $data
+            }
+            const $common = new Common($payload)
+            $common.Sample()
+            $common.ApiData()
+
+            // $response = await fetch('http://localhost:8000/sample/')
+            // $data = await $response.json()
+            // console.log('Response: ' + $response)
+            // console.log('data: ' + JSON.stringify($data))
+            // console.log('link: ' + window.location.origin)
         }
     }
 
