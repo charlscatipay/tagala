@@ -5,6 +5,7 @@ class Profile(models.Model):
     profile_id = models.BigAutoField(primary_key=True)
     firstname = models.CharField(max_length=120)
     lastname = models.CharField(max_length=120)
+    email = models.CharField(max_length=120, default=None)
     location = models.CharField(max_length=120)
     date_added = models.DateTimeField(auto_now_add=True)
 

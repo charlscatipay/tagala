@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    console.log('Login JS')
     var Login = {
         Init: function(config) {
             this.config = config;
@@ -12,23 +11,28 @@ $(document).ready(function(){
 
         },
         Login: async () => {
-            let $self = Login.config;
-            $data = $self.form_login.serializeArray();
-            console.log($data[0].value)
+            let $self = Login.config,
+                $clean_data = {};
+                
+            $.each($self.form_login.serializeArray(), function(){
+                $clean_data[this.name] = this.value;
+            });
+            console.log($clean_data)
 
             $payload = {
-                url : '/sample/',
-                payload: $data
+                url : '/submit/',
+                method_type: 'POST',
+                payload: $clean_data
             }
-            const $common = new Common($payload)
-            $common.Sample()
-            $common.ApiData()
 
-            // $response = await fetch('http://localhost:8000/sample/')
-            // $data = await $response.json()
-            // console.log('Response: ' + $response)
-            // console.log('data: ' + JSON.stringify($data))
-            // console.log('link: ' + window.location.origin)
+            const $common = new Common($payload)
+            $common.ApiData()
+            .then(data => {
+                console.log(data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
         }
     }
 
