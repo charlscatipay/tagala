@@ -2,6 +2,7 @@ from rest_framework.views import APIView # allow us to use the request.data medt
 from rest_framework.response import Response
 from rest_framework import status
 
+from django.shortcuts import redirect
 from django.views.generic import TemplateView
 from django.http import JsonResponse
 from django.db import transaction
@@ -17,7 +18,9 @@ class Save(APIView):
     def post(self, request):
         return_data = {}
         data = request.data
-        print(data)
+        request.session['sample'] = 'test'
+        print(request.session.keys())
+        print(request.session['sample'])
 
         if self.email_exist(data['email']):
             return_data['err_code'] = 0
@@ -50,7 +53,7 @@ class Save(APIView):
 
                 return_data['err_code'] = 1
                 return_data['result'] = 'Success!'
-
+        
         return Response(return_data)
 
     def email_exist(self, email_data):

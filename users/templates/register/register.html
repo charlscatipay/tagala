@@ -24,7 +24,9 @@
     <body class="bg-light pt-5">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
-                <main>
+                <main class="wrapper"
+                data-host="{% if request.is_secure %}https://{{ request.get_host }}{% else %}http://{{ request.get_host }}{% endif %}"
+                >
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
