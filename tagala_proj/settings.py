@@ -11,9 +11,14 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# mag add ka ani everytime naa kay TEMPLATES & STATIC folders sa imong new applications
+TEMPLATE_DIR_BACKOFFICE = os.path.join(BASE_DIR, 'backoffice', 'templates')
+STATIC_DIR_BACKOFFICE = os.path.join(BASE_DIR, 'backoffice', 'static')
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,6 +32,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = 'users:login'
+LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -38,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+    'backoffice',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +63,7 @@ ROOT_URLCONF = 'tagala_proj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR_BACKOFFICE], # ang imong ge create na TEMPLATE_DIR is e add ari
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,7 +128,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR,"static")
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [ # e add ari imong ge create nga STATIC_DIR
+    ("backoffice_static", STATIC_DIR_BACKOFFICE),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

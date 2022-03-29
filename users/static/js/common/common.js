@@ -18,7 +18,19 @@ class Common{
             
             $options = {method: $data.method_type, headers: $headers, body: $payload}
 
+        const sleep = m => new Promise(r => setTimeout(r, m))
+
+        $('body').prepend(`
+            <div id="loading" class="d-flex align-items-center justify-content-center" >
+                <img width="80"src="${$base_host + '/static/resource/gif/loading-tagala2.gif'}" alt="loading-tagala">
+            </div>
+        `)
+
         let response = await fetch($url, $options);
+        await sleep(800)
+        
+        $('#loading').remove();
+        
         if (response.status >= 200 && response.status <= 204){
 
             let return_data = await response.json();
