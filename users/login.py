@@ -12,6 +12,19 @@ class Login(TemplateView):
     # next = request.GET.get('next',)
     # print(f'Next: {next}')
 
+class SessionCheck(APIView):
+    def get(self, request):
+        data = {}
+        if len(request.session.keys()) <= 0:
+            print(f'Session: {request.session.keys()}')
+            data['user_pk'] = 0
+            return Response(data)
+
+        elif len(request.session.keys()) > 0:
+            print(f'Session: {request.session["_auth_user_id"]}')
+            data['user_pk'] = request.session["_auth_user_id"]
+            return Response(data)
+
 class Submit(APIView):
     def post(self, request):
         data = request.data

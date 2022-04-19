@@ -6,6 +6,7 @@ app_name = 'users'
 
 urlpatterns = [
     path('', login.Login.as_view(), name='login'),
+    path('test/', login.SessionCheck.as_view(), name='test'),
     path('submit/', login.Submit.as_view(), name='login-submit'),
     path('register/', login_required(register.Register.as_view()), name='register'),
     path('save/', register.Save.as_view(), name='register-save'),

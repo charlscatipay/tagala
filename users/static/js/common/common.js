@@ -15,8 +15,12 @@ class Common{
                 'Content-type': 'application/json; charset=UTF-8',
                 'X-CSRFToken': $data.payload.csrfmiddlewaretoken //para ma basa ni Django ang Token
             }; 
-            
-            $options = {method: $data.method_type, headers: $headers, body: $payload}
+
+            if($data.method_type == 'GET'){ // importante ni kay kung mag get ka, dapat wala na shay body
+                $options = { method: $data.method_type, headers: $headers};
+            }else{
+                $options = { method: $data.method_type, headers: $headers, body: $payload };
+            }
 
         const sleep = m => new Promise(r => setTimeout(r, m))
 

@@ -18,6 +18,7 @@ $(document).ready(function(){
 				showConfirmButton: false,
 				timer: 3000
 			}); 
+            Login.SessionCheck();
         },
         Login: async () => {
             let $self = Login.config,
@@ -67,6 +68,38 @@ $(document).ready(function(){
                 } else{
                     console.log('Unknown Error Occur')
                 }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        },
+        SessionCheck: () => {
+            let $self = Login.config,
+                $clean_data = {},
+                $base_host  = $.trim($self.wrapper.attr('data-host'));
+
+            $.each($self.form_login.serializeArray(), function(){
+                $clean_data[this.name] = this.value;
+            });
+
+            console.log($clean_data)            
+            $payload = {
+                url : '/test/',
+                method_type: 'GET',
+                payload: $clean_data
+            }
+
+            const $common = new Common($payload)
+            
+            $common.ApiData()
+            .then(async data => {
+                if(data.user_pk > 0){
+                    console.log('Some user have logged in')
+                        window.location.replace($base_host + '/backoffice/');
+                } else if (data.user_pk <= 0){
+                    console.log('Good to log in')
+                }
+                console.log(data)
             })
             .catch(err => {
                 console.log(err)
