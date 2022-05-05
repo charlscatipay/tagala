@@ -1,0 +1,140 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block content %} 
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Groups</h1>
+                    </div>
+                </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-tools" style="width: 100%">
+                                <div class="input-group input-group-sm justify-content-end">
+                                    <form class="d-flex justify-content-end">
+                                        {% csrf_token %}
+                                        <div class="m-1">
+                                            <div class="input-group-append">
+                                                <input type="text" name="table_search" class="form-control float-right" placeholder="Enter Group">
+                                                <button type="button" class="btn btn-outline-info" id="btn-search">Search</button>
+                                            </div>
+                                        </div>
+                                        <div class="my-1">
+                                            <button type="button" class="btn btn-outline-info" id="btn-new" class="m-1">New <i class="far fa-file"></i></button>
+                                            <button type="button" class="btn btn-outline-danger" id="btn-clear">Clear <i class="fas fa-eraser"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                <th>ID</th>
+                                <th>User</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Reason</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td>183</td>
+                                <td>John Doe</td>
+                                <td>11-7-2014</td>
+                                <td><span class="tag tag-success">Approved</span></td>
+                                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                </tr>
+                                <tr>
+                                <td>219</td>
+                                <td>Alexander Pierce</td>
+                                <td>11-7-2014</td>
+                                <td><span class="tag tag-warning">Pending</span></td>
+                                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                </tr>
+                                <tr>
+                                <td>657</td>
+                                <td>Bob Doe</td>
+                                <td>11-7-2014</td>
+                                <td><span class="tag tag-primary">Approved</span></td>
+                                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                </tr>
+                                <tr>
+                                <td>175</td>
+                                <td>Mike Doe</td>
+                                <td>11-7-2014</td>
+                                <td><span class="tag tag-danger">Denied</span></td>
+                                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->    
+
+        <div class="modal fade" id="modal-charges" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            <i class="fa fa-folder-open"></i> 
+                            <span></span>
+                        </h4>
+                        <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="modal-form-charges"> 
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <input type="text" class="form-control" name="charge_desc" id='in-charge-description' placeholder="Enter ...">
+                                    </div>
+                                </div>
+                            </div>                       
+    
+                        </form>     
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default btn-close" data-dismiss="modal"><i class="fa fa-window-close"></i> Close</button>
+                        <button type="button" class="btn btn-primary" id="btn-save">
+                            <i class="fa fa-floppy"></i> Save changes</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->  
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </section>
+    <!-- /.content -->
+  </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+
+    <script src="{% static 'js/setup/groups/groups.js' %}"></script>
+    
+{% endblock %}
