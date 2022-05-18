@@ -59,6 +59,7 @@
     <link rel="stylesheet" href="{% static 'vendors/plugins/daterangepicker/daterangepicker.css' %}">
     <!-- summernote -->
     <link rel="stylesheet" href="{% static 'vendors/plugins/summernote/summernote-bs4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
   {% endblock %}
 </head>
@@ -68,7 +69,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="index3.html" class="brand-link">
+        <a href="#" class="brand-link">
             <img src="{% static 'vendors/dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">Tagala | ManSys</span>
         </a>
@@ -670,10 +671,21 @@
         </div>
         <!-- /.sidebar -->
         </aside>
-        {% block content %}
-
-        {% endblock %}
-        <!-- /.content-wrapper -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper" data-host="{% if request.is_secure %}https://{{ request.get_host }}{% else %}http://{{ request.get_host }}{% endif %}">      
+            <section class="content-header">
+                <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="module-name">Groups</h1>
+                            </div>
+                        </div>
+                </div><!-- /.container-fluid -->
+            </section>   
+            {% block content %}
+            {% endblock %} 
+        </div>
+        <!-- /.content-wrapper -->        
         <footer class="main-footer">
         <strong>Copyright &copy; 2022 <a href="#">Tagala</a>.</strong>
         All rights reserved.

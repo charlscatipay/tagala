@@ -2,18 +2,7 @@
 {% load static %}
 
 {% block content %} 
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Groups</h1>
-                    </div>
-                </div>
-        </div><!-- /.container-fluid -->
-    </section>
-
+<div>
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -24,11 +13,11 @@
                         <div class="card-header">
                             <div class="card-tools" style="width: 100%">
                                 <div class="input-group input-group-sm justify-content-end">
-                                    <form class="d-flex justify-content-end">
+                                    <form class="d-flex justify-content-end" id="form-search">
                                         {% csrf_token %}
                                         <div class="m-1">
                                             <div class="input-group-append">
-                                                <input type="text" name="table_search" class="form-control float-right" placeholder="Enter Group">
+                                                <input type="text" name="in-search" class="form-control float-right" placeholder="Enter Group">
                                                 <button type="button" class="btn btn-outline-info" id="btn-search">Search</button>
                                             </div>
                                         </div>
