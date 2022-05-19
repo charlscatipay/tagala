@@ -17,7 +17,7 @@
                                         {% csrf_token %}
                                         <div class="m-1">
                                             <div class="input-group-append">
-                                                <input type="text" name="in-search" class="form-control float-right" placeholder="Enter Group">
+                                                <input type="text" name="in-search" class="form-control float-right" placeholder="Enter Group" id="in-search">
                                                 <button type="button" class="btn btn-outline-info" id="btn-search">Search</button>
                                             </div>
                                         </div>
@@ -31,46 +31,16 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
-                            <thead>
-                                <tr>
-                                <th>ID</th>
-                                <th>User</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Reason</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                <td>183</td>
-                                <td>John Doe</td>
-                                <td>11-7-2014</td>
-                                <td><span class="tag tag-success">Approved</span></td>
-                                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                </tr>
-                                <tr>
-                                <td>219</td>
-                                <td>Alexander Pierce</td>
-                                <td>11-7-2014</td>
-                                <td><span class="tag tag-warning">Pending</span></td>
-                                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                </tr>
-                                <tr>
-                                <td>657</td>
-                                <td>Bob Doe</td>
-                                <td>11-7-2014</td>
-                                <td><span class="tag tag-primary">Approved</span></td>
-                                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                </tr>
-                                <tr>
-                                <td>175</td>
-                                <td>Mike Doe</td>
-                                <td>11-7-2014</td>
-                                <td><span class="tag tag-danger">Denied</span></td>
-                                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                </tr>
-                            </tbody>
+                            <table class="table table-hover text-nowrap" style="text-align: center">
+                                <thead class="thead-default">
+                                    <tr class="striped bg-info">
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Code</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col" class="w-15">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tb-md" id="tbl-groups"></tbody>
                             </table>
                         </div>
                         <!-- /.card-body -->
@@ -80,7 +50,7 @@
             </div>
         </div><!-- /.container-fluid -->    
 
-        <div class="modal fade" id="modal-charges" data-backdrop="static" data-keyboard="false">
+        <div class="modal fade" id="modal-groups" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -93,13 +63,17 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="modal-form-charges"> 
+                        <form id="modal-form-groups"> 
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label>Description</label>
-                                        <input type="text" class="form-control" name="charge_desc" id='in-charge-description' placeholder="Enter ...">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" name="GroupName" id='in-group-name' placeholder="Enter ...">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Code</label>
+                                        <input type="text" class="form-control" name="GroupCode" id='in-group-code' placeholder="Enter ...">
                                     </div>
                                 </div>
                             </div>                       
@@ -109,7 +83,7 @@
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default btn-close" data-dismiss="modal"><i class="fa fa-window-close"></i> Close</button>
                         <button type="button" class="btn btn-primary" id="btn-save">
-                            <i class="fa fa-floppy"></i> Save changes</button>
+                            <i class="fa fa-floppy"></i> Save </button>
                     </div>
                 </div>
                 <!-- /.modal-content -->  
