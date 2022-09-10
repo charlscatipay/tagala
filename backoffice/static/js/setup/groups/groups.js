@@ -81,9 +81,9 @@ $(document).ready(function(){
                             $status = (data[i]['ReferenceTableStatusID'] == '1') ? ['bg-success', '', 'checked', 'Active'] : ['bg-danger', 'disabled', '', 'Inactive']
                             $txt += `
                                         <tr id='${data[i]['GroupID']}'>
-                                            <td>${data[i]['GroupName']}</td>
-                                            <td>${data[i]['GroupCode']}</td>
-                                            <td>
+                                            <td data-label="GROUP NAME">${data[i]['GroupName']}</td>
+                                            <td data-label="GROUP CODE">${data[i]['GroupCode']}</td>
+                                            <td data-label="STATUS">
                                                 <span class="badge ${$status[0]}">${ $status[3] }</span>
                                             </td>
                                             <td scope="row" data-label="ACTION" class="w-15">
@@ -106,7 +106,8 @@ $(document).ready(function(){
         Save: (e, data) => {
             var $self = Groups.config,
                 $route = (typeof(e) == 'object') ? e.data.param : e,
-                $clean_data = {};
+                $clean_data = {},
+                $txt = '';
 
             switch($route){
                 case 1:
@@ -126,14 +127,17 @@ $(document).ready(function(){
                         .then(async data => {
                             console.log(data['Result'])
                             if(data['Result'] == 0){
+                                console.log('Err:1')
                                 toast.fire({
                                     icon: 'warning',
                                     title: `&nbsp; ${data.ErrorMessage}`
                                 })
                             }else{
+                                console.log('Err:2')
                                 Groups.Save(2, data)
                             }
                         }).catch(err => {
+                            console.log('Err:3')
                             toast.fire({
                                 icon: 'warning',
                                 title: `&nbsp; ${err}`
@@ -146,19 +150,16 @@ $(document).ready(function(){
                 case 2:
                     toast.fire({
                         icon: 'success',
-                        title: `&nbsp; successfully added`
+                        title: `&nbsp; Successfully added`
                     })
-                    console.log('test')
                     Groups.CloseModal(1)
-                    console.log('test2')
                     $self.tbl_groups.empty()
-                    console.log('test3')
                     $status = (data['Data']['ReferenceTableStatusID'] == '1') ? ['bg-success', '', 'checked', 'Active'] : ['bg-danger', 'disabled', '', 'Inactive']
                     $txt += `
                                 <tr id='${data['Data']['GroupID']}'>
-                                    <td>${data['Data']['GroupName']}</td>
-                                    <td>${data['Data']['GroupCode']}</td>
-                                    <td>
+                                    <td data-label="GROUP NAME">${data['Data']['GroupName']}</td>
+                                    <td data-label="GROUP CODE">${data['Data']['GroupCode']}</td>
+                                    <td data-label="STATUS">
                                         <span class="badge ${$status[0]}">${ $status[3] }</span>
                                     </td>
                                     <td scope="row" data-label="ACTION" class="w-15">

@@ -92,8 +92,8 @@ DATABASES = {
         'NAME': 'tagala',
         'HOST': '127.0.0.1',
         'PORT': '3306',
-        'USER': 'jradmin',
-        'PASSWORD': '7BCRsxOg',
+        'USER': 'admin',
+        'PASSWORD': 'C1tgp@$$w0rd',
     }
 }
 

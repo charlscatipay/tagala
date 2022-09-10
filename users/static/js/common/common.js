@@ -25,8 +25,8 @@ class Common{
         const sleep = m => new Promise(r => setTimeout(r, m))
 
         $('body').prepend(`
-            <div id="loading" class="d-flex align-items-center justify-content-center" >
-                <img width="80"src="${$base_host + '/static/resource/gif/loading-tagala2.gif'}" alt="loading-tagala">
+            <div id="loading" class="d-flex align-items-center justify-content-center" style="z-index: 3000 !important;">
+                <img width="80" src="${$base_host + '/static/resource/gif/loading-tagala2.gif'}" alt="loading-tagala">
             </div>
         `)
 
